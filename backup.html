@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probo » Consultoría Especializada en OSC</title>
+
+    <!-- FRAMEWORK DE DISEÑO: Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'probo-navy': '#0a2e4a',
+                        'probo-teal': '#19748a',
+                        'probo-mint': '#e7f2f7',
+                        'probo-light-blue': '#f8fafc',
+                        'probo-vibrant-blue': '#b8faff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- TIPOGRAFÍAS Google Fonts (Alternativas Satoshi y Neue) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- ICONOS: Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* DEFINICIÓN DE COLORES MIV PROBO */
+        :root {
+            --probo-navy: #0a2e4a;
+            --probo-teal: #19748a;
+            /* Color Principal del MIV solicitado */
+            --probo-teal-sec: #19748a;
+            --probo-mint: #e7f2f7;
+            /* Cambiado a un tono más suave para consistencia */
+            --probo-light-blue: #f8fafc;
+            --probo-vibrant-blue: #b8faff;
+            --probo-black: #000000;
+        }
+
+        /* CONFIGURACIÓN DE TIPOGRAFÍA */
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            background-color: #FFFFFF;
+            color: var(--probo-navy);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        .font-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            /* Ajustado de 900 a 800 para mejor legibilidad */
+        }
+
+        /* Tipografía específica para el cartel de finalidad */
+        .finality-text {
+            font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Optimización de renderizado */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: auto;
+        }
+
+        /* Utilidades de color */
+        .text-probo-navy {
+            color: var(--probo-navy);
+        }
+
+        .bg-probo-navy {
+            background-color: var(--probo-navy);
+        }
+
+        .text-probo-teal {
+            color: var(--probo-teal);
+        }
+
+        .bg-probo-teal {
+            background-color: var(--probo-teal);
+        }
+
+        .bg-probo-light {
+            background-color: var(--probo-light-blue);
+        }
+
+        .bg-probo-mint {
+            background-color: var(--probo-mint);
+        }
+
+        /* HERO */
+        .hero-viewport {
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 46, 74, 0.7), rgba(10, 46, 74, 0.5)),
+                url('hero_bg.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            /* Texto blanco sobre el fondo oscuro solicitado */
+        }
+
+        /* MARQUESINA */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            background: #fff;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--probo-light-blue);
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee-animation-right 40s linear infinite;
+            /* Un poco más rápido */
+        }
+
+        .marquee-word {
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            font-size: 2.5rem;
+            /* Más grandes */
+            color: var(--probo-navy);
+        }
+
+        @keyframes marquee-animation-right {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Animaciones */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            padding: 16px;
+            border-radius: 50%;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(8deg);
+            background-color: #20ba5a;
+        }
+
+        /* Tarjeta de Finalidad */
+        .finality-card {
+            background-color: var(--probo-light-blue);
+            border-radius: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(10, 46, 74, 0.1);
+        }
+
+        .finality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .finality-card::before {
+            content: "»";
+            position: absolute;
+            right: 0;
+            bottom: -80px;
+            font-size: 25rem;
+            font-weight: 900;
+            color: rgba(25, 116, 138, 0.05);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .modal-base {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Ajustes Mobile Específicos */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem !important;
+            }
+
+            h3 {
+                font-size: 1.85rem !important;
+            }
+
+            .finality-text {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BOTÓN WHATSAPP CON MENSAJE PERSONALIZADO -->
+    <a href="https://wa.me/5493512898560?text=Hola%20Probo!%20Vi%20su%20sitio%20web%20y%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n."
+        class="whatsapp-float" target="_blank" title="Chatea con nosotros">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.001 12.048a11.827 11.827 0 001.578 5.919L0 24l6.128-1.608a11.805 11.805 0 005.917 1.586h.005c6.636 0 12.046-5.411 12.05-12.048a11.823 11.823 0 00-3.526-8.508z" />
+        </svg>
+    </a>
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 md:py-6 px-6 lg:px-20">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <img src="logo.png" alt="Probo Logo" id="nav-logo" class="h-8 md:h-12 w-auto transition-all">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-10 text-[11px] font-bold uppercase tracking-[0.2em] text-[#e7f2f7]"
+                id="nav-links">
+                <a href="#" class="hover:text-[#0a2e4a] transition">Home</a>
+                <a href="#nosotros" class="hover:text-[#0a2e4a] transition">Nosotros</a>
+                <a href="#servicios" class="hover:text-[#0a2e4a] transition">Servicios</a>
+                <button onclick="toggleModal('construction-modal', true)"
+                    class="hover:text-[#0a2e4a] transition flex items-center gap-2">
+                    Acceso Clientes <i data-lucide="lock" size="12"></i>
+                </button>
+                <a href="#contacto"
+                    class="bg-probo-teal text-white px-7 py-2.5 rounded-xl hover:bg-probo-navy transition shadow-sm font-bold">
+                    Contacto
+                </a>
+            </div>
+
+            <button class="md:hidden text-probo-navy" id="mobile-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MENÚ MÓVIL -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white z-[60] flex flex-col p-10 translate-x-full md:hidden transition-transform duration-500">
+        <div class="flex justify-between items-center mb-16">
+            <img src="logo.png" alt="Probo Logo" class="h-10 w-auto">
+            <button onclick="toggleMobileMenu(false)" class="text-probo-navy">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-8 text-2xl font-bold text-probo-navy uppercase font-title">
+            <a href="#nosotros" onclick="toggleMobileMenu(false)">Nosotros</a>
+            <a href="#clientes" onclick="toggleMobileMenu(false)">Sectores</a>
+            <a href="#servicios" onclick="toggleMobileMenu(false)">Servicios</a>
+            <a href="#contacto" onclick="toggleMobileMenu(false)">Contacto</a>
+            <button onclick="toggleModal('construction-modal', true); toggleMobileMenu(false)"
+                class="text-left text-probo-teal">Acceso Clientes »</button>
+        </div>
+    </div>
+
+    <!-- SECCIÓN HERO -->
+    <header class="hero-viewport px-6 md:px-8 lg:px-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full z-10 text-center md:text-left">
+            <div class="reveal">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl mb-10 leading-[0.9] tracking-tighter font-black">
+                    Acompañamiento <br class="hidden md:block"> profesional especializado en <br
+                        class="hidden md:block">
+                    <span class="text-probo-vibrant-blue">Organizaciones de la <br class="hidden md:block"> Sociedad
+                        Civil.</span>
+                </h1>
+                <p
+                    class="text-lg md:text-2xl text-white/90 max-w-3xl mb-12 leading-relaxed mx-auto md:mx-0 font-medium">
+                    Ordenamos procesos, prevenimos problemas, generamos soluciones y brindamos tranquilidad
+                    institucional para que las OSC puedan centrarse en lo importante: <span
+                        class="font-bold italic text-probo-vibrant-blue">su misión.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start">
+                    <button onclick="toggleModal('booking-modal', true)"
+                        class="w-full sm:w-auto bg-probo-teal text-white px-12 md:px-16 py-5 md:py-7 rounded-xl font-bold uppercase tracking-widest text-[11px] md:text-[12px] hover:bg-probo-navy transition shadow-2xl flex items-center justify-center gap-4 font-title">
+                        <i data-lucide="calendar" size="18"></i> Agendar Consulta
+                    </button>
+                    <a href="#servicios"
+                        class="w-full sm:w-auto border-2 border-white text-white px-10 md:px-12 py-5 md:py-6 rounded-xl font-bold uppercase tracking-widest text-[11px] md:text-[12px] hover:bg-probo-teal hover:border-probo-teal transition flex items-center justify-center font-title">
+                        Nuestros Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN MÉTRICAS (CONTEO) -->
+    <section class="py-16 md:py-24 bg-white px-6 lg:px-20 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+                <div class="text-center md:text-left">
+                    <span class="block text-4xl md:text-5xl font-black text-probo-teal mb-2">+55</span>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Entidades
+                        <br>constituidas
+                    </p>
+                </div>
+                <div class="text-center md:text-left border-l border-slate-100 pl-0 md:pl-12">
+                    <span class="block text-4xl md:text-5xl font-black text-probo-teal mb-2">+200</span>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Organizaciones
+                        <br>acompañadas
+                    </p>
+                </div>
+                <div class="text-center md:text-left border-l border-slate-100 pl-0 md:pl-12">
+                    <span class="block text-4xl md:text-5xl font-black text-probo-teal mb-2">+30</span>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Capacitaciones
+                        <br>brindadas
+                    </p>
+                </div>
+                <div class="text-center md:text-left border-l border-slate-100 pl-0 md:pl-12">
+                    <span class="block text-4xl md:text-5xl font-black text-probo-teal mb-2">+100</span>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Entidades
+                        <br>regularizadas
+                    </p>
+                </div>
+                <div class="text-center md:text-left border-l border-slate-100 pl-0 md:pl-12">
+                    <span class="block text-4xl md:text-5xl font-black text-probo-teal mb-2">+8</span>
+                    <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Años
+                        <br>asesorando
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUESINA -->
+    <div class="marquee-container">
+        <div class="marquee-content font-title">
+            <div class="flex items-center gap-10 md:gap-24 px-12">
+                <span class="marquee-word">ESPECIALIZACIÓN</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">VISIÓN INTEGRAL</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">CERCANÍA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">TRANSPARENCIA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">SÓLIDA EXPERIENCIA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">SOLUCIONES A MEDIDA</span> <span class="text-probo-teal text-4xl">»</span>
+            </div>
+            <div class="flex items-center gap-10 md:gap-24 px-12">
+                <span class="marquee-word">ESPECIALIZACIÓN</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">VISIÓN INTEGRAL</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">CERCANÍA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">TRANSPARENCIA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">SÓLIDA EXPERIENCIA</span> <span class="text-probo-teal text-4xl">»</span>
+                <span class="marquee-word">SOLUCIONES A MEDIDA</span> <span class="text-probo-teal text-4xl">»</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN NOSOTROS -->
+    <section id="nosotros" class="py-20 md:py-24 px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-12 md:gap-20 items-start mb-16">
+                <div class="lg:col-span-7 reveal">
+                    <h2 class="text-probo-teal tracking-[0.3em] uppercase text-sm mb-6 font-black font-title">Nosotros
+                    </h2>
+                    <h3 class="text-4xl md:text-6xl text-probo-navy mb-10 tracking-tighter leading-none font-black">Un
+                        equipo interdisciplinario.</h3>
+                    <p class="text-base md:text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                        Somos un equipo de abogados y contadores especializados en Organizaciones de la Sociedad Civil.
+                        Con sede en <strong>Córdoba, Argentina</strong>, centralizamos en un único lugar el servicio de
+                        acompañamiento legal, contable, impositivo, laboral y de capacitación para OSC y para empresas
+                        que se vinculen o quieran vincularse con las mismas.
+                    </p>
+                    <div class="grid gap-6 md:gap-8">
+                        <div class="flex gap-4 items-start">
+                            <span class="text-probo-teal font-black text-2xl">»</span>
+                            <p class="text-slate-800 font-bold text-lg md:text-xl">Trabajamos desde la prevención, no
+                                desde la urgencia.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="text-probo-teal font-black text-2xl">»</span>
+                            <p class="text-slate-800 font-bold text-lg md:text-xl">Con seguimiento permanente y
+                                continuo.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="text-probo-teal font-black text-2xl">»</span>
+                            <p class="text-slate-800 font-bold text-lg md:text-xl">Con comunicación simple y clara.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="text-probo-teal font-black text-2xl">»</span>
+                            <p class="text-slate-800 font-bold text-lg md:text-xl">En cercanía con nuestros clientes,
+                                entendiendo su realidad diaria, sus desafíos y sus tiempos.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 reveal delay-100">
+                        <span
+                            class="text-xs font-bold uppercase tracking-[0.3em] text-slate-400 mb-6 block font-title">Con
+                            una finalidad clara:</span>
+                        <div class="finality-card p-12 md:p-16 group">
+                            <p
+                                class="finality-text text-probo-navy text-2xl md:text-4xl uppercase italic text-center md:text-left">
+                                Favorecer el pleno desarrollo y crecimiento de las organizaciones y proyectos sociales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 reveal delay-200">
+                    <div
+                        class="aspect-[4/5] bg-slate-100 rounded-[3rem] md:rounded-[4rem] overflow-hidden relative shadow-2xl">
+                        <img src="trabajando.webp" alt="Equipo Probo Trabajando"
+                            class="w-full h-full object-cover object-center brightness-105">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESPONSABLES DE ÁREA -->
+            <div class="reveal pt-16 border-t border-slate-100">
+                <div class="mb-16 text-center">
+                    <h4 class="text-3xl md:text-4xl text-probo-navy mb-4 tracking-tighter uppercase italic font-black">
+                        Responsables de Área</h4>
+                    <p class="text-slate-500 max-w-2xl mx-auto font-bold text-base md:text-lg">Profesionales a cargo de
+                        la dirección y coordinación de PROBO.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                    <!-- 1. Germán -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div
+                            class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
+                            <img src="german.png" alt="Cr. Germán Rossi"
+                                class="w-full h-full object-cover object-top block">
+                        </div>
+                        <h5 class="text-xl md:text-2xl text-probo-navy font-black mb-2">» Cr. Germán Rossi</h5>
+                        <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-3 font-title">M.P.
+                            10.17295.5 CPCE Cba</p>
+                        <p
+                            class="bg-probo-teal text-white px-5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider font-title">
+                            Área Impositiva y Contable</p>
+                    </div>
+                    <!-- 2. Ale -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div
+                            class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
+                            <img src="alexandra.png" alt="Ab. Alexandra Szyrko"
+                                class="w-full h-full object-cover object-top block">
+                        </div>
+                        <h5 class="text-xl md:text-2xl text-probo-navy font-black mb-2">» Ab. Alexandra Szyrko</h5>
+                        <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-3 font-title">M.P.
+                            1-37069</p>
+                        <p
+                            class="bg-probo-teal text-white px-5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider font-title">
+                            Área Legal y Capacitación</p>
+                    </div>
+                    <!-- 3. Maxi -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div
+                            class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
+                            <img src="maxi.png" alt="Cr. Maximiliano Giai"
+                                class="w-full h-full object-cover object-top block">
+                        </div>
+                        <h5 class="text-xl md:text-2xl text-probo-navy font-black mb-2">» Cr. Maximiliano Giai</h5>
+                        <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-3 font-title">M.P.
+                            10.18079.0 CPCE Cba</p>
+                        <p
+                            class="bg-probo-teal text-white px-5 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider font-title">
+                            Área Laboral y Contable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SECTORES -->
+    <section id="clientes" class="py-20 md:py-24 px-6 md:px-8 lg:px-20 bg-probo-light rounded-[3rem] md:rounded-[4rem]">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal text-center mb-20">
+                <h2 class="text-probo-teal tracking-[0.3em] uppercase text-sm mb-6 font-black font-title">Acompañamos
+                </h2>
+                <h3 class="text-3xl md:text-5xl text-probo-navy mb-8 tracking-tighter uppercase italic font-black">A
+                    quiénes acompañamos</h3>
+                <p class="text-slate-600 font-bold max-w-3xl mx-auto text-base md:text-xl">No creemos en soluciones
+                    estándar. Asesoramos y potenciamos a organizaciones con soluciones a medida.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 reveal mb-16">
+                <!-- Tarjetas de Sectores con diseño mejorado -->
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="building-2" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Asociaciones<br>Civiles</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="heart" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Fundaciones</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="briefcase" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Cámaras<br>Empresarias</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="network" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Clusters</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="layers" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Federaciones y Confederaciones</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="handshake" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Cooperativas y Mutuales</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="sparkles" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Proyectos Sociales en formación</h4>
+                </div>
+                <div
+                    class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all border border-slate-100">
+                    <i data-lucide="users" class="text-probo-teal mb-6 md:mb-8" size="48"></i>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest leading-tight font-title">
+                        Empresas con Impacto Social</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SERVICIOS -->
+    <section id="servicios" class="py-20 md:py-24 px-6 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal mb-16 text-center">
+                <h2 class="text-probo-teal tracking-[0.3em] uppercase text-sm mb-6 font-black font-title">Nuestros
+                    servicios</h2>
+                <h3 class="text-4xl md:text-6xl mb-12 tracking-tighter italic font-black text-probo-navy uppercase">
+                    Soluciones Especializadas.</h3>
+                <p class="text-slate-500 font-bold max-w-4xl mx-auto leading-relaxed text-base md:text-xl">
+                    Centralizamos en un único lugar el asesoramiento jurídico, contable, laboral e impositivo para OSC.
+                </p>
+            </div>
+
+            <!-- Primera fila: 3 columnas -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 reveal mb-10">
+                <div
+                    class="bg-probo-light p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-transparent hover:border-probo-teal transition-all group flex flex-col">
+                    <div class="mb-8 text-probo-teal"><i data-lucide="scroll-text" size="40"></i></div>
+                    <h4
+                        class="text-2xl text-probo-navy group-hover:text-probo-teal transition uppercase italic font-black mb-8">
+                        Legales</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-bold">
+                        <li class="flex items-start gap-3"><span>»</span> Formalización de proyectos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Registro de marcas</li>
+                        <li class="flex items-start gap-3"><span>»</span> Seguimiento institucional</li>
+                        <li class="flex items-start gap-3"><span>»</span> Regularización institucional</li>
+                        <li class="flex items-start gap-3"><span>»</span> Adecuaciones estatutarias</li>
+                        <li class="flex items-start gap-3"><span>»</span> Auditorías preventivas</li>
+                        <li class="flex items-start gap-3"><span>»</span> Actualización de autoridades</li>
+                        <li class="flex items-start gap-3"><span>»</span> Presentaciones ante organismos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Saneamiento documental</li>
+                        <li class="flex items-start gap-3"><span>»</span> Contratos y convenios</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-probo-light p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-transparent hover:border-probo-teal transition-all group flex flex-col">
+                    <div class="mb-8 text-probo-teal"><i data-lucide="calculator" size="40"></i></div>
+                    <h4
+                        class="text-2xl text-probo-navy group-hover:text-probo-teal transition uppercase italic font-black mb-8">
+                        Contables</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-bold">
+                        <li class="flex items-start gap-3"><span>»</span> Balances y auditoría contable</li>
+                        <li class="flex items-start gap-3"><span>»</span> Seguimiento periódico</li>
+                        <li class="flex items-start gap-3"><span>»</span> Alertas de vencimientos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Auditorías preventivas</li>
+                        <li class="flex items-start gap-3"><span>»</span> Proyectos y subsidios</li>
+                        <li class="flex items-start gap-3"><span>»</span> Presentaciones ante organismos de control</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-probo-light p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-transparent hover:border-probo-teal transition-all group flex flex-col">
+                    <div class="mb-8 text-probo-teal"><i data-lucide="landmark" size="40"></i></div>
+                    <h4
+                        class="text-2xl text-probo-navy group-hover:text-probo-teal transition uppercase italic font-black mb-8">
+                        Impositivos</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-bold">
+                        <li class="flex items-start gap-3"><span>»</span> Exenciones impositivas</li>
+                        <li class="flex items-start gap-3"><span>»</span> Auditoría y planificación fiscal</li>
+                        <li class="flex items-start gap-3"><span>»</span> Presentación de DDJJ</li>
+                        <li class="flex items-start gap-3"><span>»</span> Análisis de riesgos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Inscripciones ante organismos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Presentaciones ante los organismos de control
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Segunda fila: 2 columnas centradas -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-10 reveal max-w-5xl mx-auto">
+                <div
+                    class="bg-probo-light p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-transparent hover:border-probo-teal transition-all group flex flex-col">
+                    <div class="mb-8 text-probo-teal"><i data-lucide="users-2" size="40"></i></div>
+                    <h4
+                        class="text-2xl text-probo-navy group-hover:text-probo-teal transition uppercase italic font-black mb-8">
+                        Laborales</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-bold font-title">
+                        <li class="flex items-start gap-3"><span>»</span> Servicio integral de liquidación de sueldos
+                        </li>
+                        <li class="flex items-start gap-3"><span>»</span> Gestión de cargas Sociales y sindicales</li>
+                        <li class="flex items-start gap-3"><span>»</span> Auditoría de procesos de liquidación</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-probo-light p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-transparent hover:border-probo-teal transition-all group flex flex-col">
+                    <div class="mb-8 text-probo-teal"><i data-lucide="graduation-cap" size="40"></i></div>
+                    <h4
+                        class="text-2xl text-probo-navy group-hover:text-probo-teal transition uppercase italic font-black mb-8">
+                        Capacitación</h4>
+                    <ul class="space-y-4 text-slate-600 text-sm font-bold font-title">
+                        <li class="flex items-start gap-3"><span>»</span> Formación para OSC y directivos</li>
+                        <li class="flex items-start gap-3"><span>»</span> Desarrollo para empresas con impacto social
+                        </li>
+                        <li class="flex items-start gap-3"><span>»</span> Espacios de formación técnica especializada
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto"
+        class="py-20 md:py-24 px-6 md:px-8 lg:px-20 bg-probo-navy text-white rounded-t-[3rem] md:rounded-t-[4rem]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 md:gap-24 mb-16 md:mb-24">
+                <div class="reveal">
+                    <img src="logo.png" alt="Probo Logo" class="h-10 md:h-14 w-auto brightness-0 invert mb-12">
+                    <h2 class="text-4xl md:text-7xl mb-12 tracking-tighter leading-none italic uppercase font-black">
+                        Hablemos <br> de tu <br> proyecto.</h2>
+
+                    <div class="space-y-10 md:space-y-12">
+                        <div class="flex flex-col space-y-3">
+                            <span
+                                class="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-probo-teal font-title">Encontranos
+                                en</span>
+                            <p class="text-xl md:text-2xl font-bold">Hipólito Yrigoyen 335, <br> Villa Allende, Córdoba,
+                                Argentina</p>
+                        </div>
+
+                        <div class="flex flex-col gap-6 font-title">
+                            <a href="mailto:info@probo.com.ar"
+                                class="text-base md:text-xl font-bold hover:text-probo-teal transition flex items-center gap-4">
+                                <i data-lucide="mail" size="24" class="text-probo-teal"></i> info@probo.com.ar
+                            </a>
+                            <a href="https://wa.me/5493512429512?text=Hola%20Probo!%20Vengo%20desde%20la%20web%20y%20tengo%20una%20consulta."
+                                class="text-base md:text-xl font-bold hover:text-probo-teal transition flex items-center gap-4">
+                                <i data-lucide="message-circle" size="24" class="text-probo-teal"></i> WhatsApp
+                            </a>
+                        </div>
+
+                        <div class="flex gap-4 pt-4">
+                            <a href="https://instagram.com/probo.consultora" target="_blank"
+                                class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-probo-teal transition"
+                                title="Instagram">
+                                <i data-lucide="instagram" size="24"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/probo-consultora" target="_blank"
+                                class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-probo-teal transition"
+                                title="LinkedIn">
+                                <i data-lucide="linkedin" size="24"></i>
+                            </a>
+                            <a href="https://facebook.com/probo.consultora" target="_blank"
+                                class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-probo-teal transition"
+                                title="Facebook">
+                                <i data-lucide="facebook" size="24"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="reveal delay-200 bg-white p-10 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl text-probo-navy">
+                    <h4 class="text-2xl mb-10 italic uppercase tracking-tighter font-black">Envíanos tu consulta</h4>
+                    <form class="space-y-8 font-title">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <input type="text" placeholder="NOMBRE"
+                                class="w-full border-b border-slate-200 py-4 outline-none focus:border-probo-teal transition bg-transparent font-bold text-xs tracking-widest uppercase">
+                            <input type="email" placeholder="EMAIL"
+                                class="w-full border-b border-slate-200 py-4 outline-none focus:border-probo-teal transition bg-transparent font-bold text-xs tracking-widest uppercase">
+                        </div>
+                        <input type="text" placeholder="ORGANIZACIÓN"
+                            class="w-full border-b border-slate-200 py-4 outline-none focus:border-probo-teal transition bg-transparent font-bold text-xs tracking-widest uppercase">
+                        <textarea placeholder="MENSAJE" rows="3"
+                            class="w-full border-b border-slate-200 py-4 outline-none focus:border-probo-teal transition bg-transparent font-bold text-xs tracking-widest resize-none uppercase"></textarea>
+
+                        <button type="button"
+                            class="bg-probo-navy text-white px-10 md:px-12 py-5 text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] hover:bg-probo-teal transition duration-500 rounded-2xl w-full shadow-lg">
+                            Enviar Consulta »
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-white/10 text-center">
+                <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] font-title">
+                    © 2026 PROBO CONSULTORA S.R.L. TODOS LOS DERECHOS RESERVADOS.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL AGENDAR CONSULTA -->
+    <div id="booking-modal"
+        class="modal-base fixed inset-0 bg-probo-navy/95 backdrop-blur-lg z-[100] flex items-center justify-center p-4 opacity-0 invisible pointer-events-none">
+        <div
+            class="bg-white w-full max-w-xl rounded-[3rem] p-10 md:p-14 relative shadow-2xl overflow-y-auto max-h-[90vh] text-probo-navy">
+            <button onclick="toggleModal('booking-modal', false)"
+                class="absolute top-8 right-8 text-slate-400 hover:text-probo-navy transition"><i
+                    data-lucide="x"></i></button>
+            <div class="relative">
+                <h3 class="text-3xl mb-4 tracking-tighter uppercase italic font-black leading-none">Agendar Consulta
+                </h3>
+                <p class="text-slate-500 text-sm font-bold mb-10 leading-relaxed font-title uppercase tracking-widest">
+                    Completá tus datos y nuestro equipo <br> se pondrá en contacto a la brevedad.</p>
+
+                <form id="whatsapp-form" class="space-y-4 font-title">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" id="w-name" placeholder="NOMBRE COMPLETO" required
+                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase">
+                        <input type="text" id="w-org" placeholder="ORGANIZACIÓN" required
+                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase">
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <select id="w-org-type"
+                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer">
+                            <option value="">TIPO DE OSC</option>
+                            <option value="Asociación Civil">Asociación Civil</option>
+                            <option value="Fundación">Fundación</option>
+                            <option value="Cámara / Cluster">Cámara / Cluster</option>
+                            <option value="Empresa Impacto">Empresa Impacto</option>
+                            <option value="En formación">En formación</option>
+                        </select>
+                        <select id="w-reason"
+                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer">
+                            <option value="">MOTIVO</option>
+                            <option value="Legal">Asesoría Legal</option>
+                            <option value="Contable">Asesoría Contable</option>
+                            <option value="Impositivo">Asesoría Impositiva</option>
+                            <option value="Laboral">Asesoría Laboral</option>
+                            <option value="General">Consulta General</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-2">Día
+                                Sugerido</label>
+                            <input type="date" id="w-date"
+                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-2">Franja
+                                Horaria</label>
+                            <select id="w-time"
+                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase">
+                                <option value="Mañana (09-12hs)">Mañana</option>
+                                <option value="Siesta (12-15hs)">Siesta</option>
+                                <option value="Tarde (15-18hs)">Tarde</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <textarea id="w-details" placeholder="DETALLE DE LA CONSULTA" rows="2"
+                        class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase resize-none"></textarea>
+
+                    <button type="submit"
+                        class="w-full bg-probo-teal text-white py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-probo-navy transition shadow-xl mt-4">
+                        Confirmar y Enviar »
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONSTRUCCIÓN -->
+    <div id="construction-modal"
+        class="modal-base fixed inset-0 bg-probo-navy/95 backdrop-blur-lg z-[100] flex items-center justify-center p-6 opacity-0 invisible pointer-events-none">
+        <div class="bg-white w-full max-w-md rounded-[3.5rem] p-14 text-center relative shadow-2xl text-probo-navy">
+            <button onclick="toggleModal('construction-modal', false)"
+                class="absolute top-8 right-8 text-slate-400 hover:text-probo-navy transition"><i
+                    data-lucide="x"></i></button>
+            <div class="text-probo-teal mb-10 flex justify-center"><i data-lucide="construction" size="72"></i></div>
+            <h3 class="text-2xl md:text-3xl mb-6 tracking-tighter uppercase italic leading-none">Sección en Construcción
+            </h3>
+            <p class="text-slate-600 font-bold leading-relaxed mb-12 text-sm italic font-title">Próximamente acceso
+                exclusivo para clientes.</p>
+            <button onclick="toggleModal('construction-modal', false)"
+                class="bg-probo-navy text-white px-10 py-5 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-probo-teal transition w-full shadow-lg font-title">Entendido
+                »</button>
+        </div>
+    </div>
+
+    <!-- MENÚ MÓVIL -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-white z-[60] flex flex-col p-10 translate-x-full md:hidden transition-transform duration-500">
+        <div class="flex justify-between items-center mb-12">
+            <img src="logo.png" alt="Probo Logo" class="h-10 w-auto">
+            <button onclick="toggleMobileMenu(false)" class="text-probo-navy">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-10 text-3xl font-black text-probo-navy uppercase font-title leading-none">
+            <a href="#" onclick="toggleMobileMenu(false)">Home</a>
+            <a href="#nosotros" onclick="toggleMobileMenu(false)">Nosotros</a>
+            <a href="#servicios" onclick="toggleMobileMenu(false)">Servicios</a>
+            <a href="#contacto" onclick="toggleMobileMenu(false)">Contacto</a>
+            <button onclick="toggleModal('construction-modal', true); toggleMobileMenu(false)"
+                class="text-left text-probo-teal mt-8">Acceso Clientes »</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        lucide.createIcons();
+
+        function toggleMobileMenu(show) {
+            const menu = document.getElementById('mobile-menu');
+            if (show) menu.classList.remove('translate-x-full');
+            else menu.classList.add('translate-x-full');
+        }
+
+        document.getElementById('mobile-toggle').addEventListener('click', () => toggleMobileMenu(true));
+
+        function toggleModal(modalId, show) {
+            const modal = document.getElementById(modalId);
+            if (show) {
+                modal.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // FORMULARIO DE AGENDAR CONSULTA - WHATSAPP
+        document.getElementById('whatsapp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const phone = "5493512429512"; // Número de Ale actualizado
+
+            const name = document.getElementById('w-name').value.toUpperCase();
+            const org = document.getElementById('w-org').value.toUpperCase();
+            const type = document.getElementById('w-org-type').value;
+            const reason = document.getElementById('w-reason').value;
+            const date = document.getElementById('w-date').value || "No especificada";
+            const time = document.getElementById('w-time').value;
+            const details = document.getElementById('w-details').value || "-";
+
+            const message = `*SOLICITUD DE CONSULTA - WEB PROBO*%0A%0A` +
+                `• *Nombre:* ${name}%0A` +
+                `• *Organización:* ${org}%0A` +
+                `• *Tipo:* ${type || "No especificado"}%0A` +
+                `• *Motivo:* ${reason || "Consulta General"}%0A%0A` +
+                `*DISPONIBILIDAD:*%0A` +
+                `• *Fecha:* ${date}%0A` +
+                `• *Horario:* ${time}%0A%0A` +
+                `*CONSULTA:*%0A${details}`;
+
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            toggleModal('booking-modal', false);
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const navLogo = document.getElementById('nav-logo');
+            if (window.scrollY > 40) {
+                navbar.classList.add('bg-[#19748a]', 'shadow-xl');
+                navLogo.classList.add('brightness-0', 'invert');
+            } else {
+                navbar.classList.remove('bg-[#19748a]', 'shadow-xl');
+                navLogo.classList.remove('brightness-0', 'invert');
+            }
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+
+</html>
