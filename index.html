@@ -273,6 +273,14 @@
             .finality-text {
                 font-size: 1.5rem !important;
             }
+
+            .marquee-container {
+                padding: 1.5rem 0;
+            }
+
+            .marquee-word {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -280,7 +288,7 @@
 <body>
 
     <!-- BOTÓN WHATSAPP CON MENSAJE PERSONALIZADO -->
-    <a href="https://wa.me/5493512898560?text=Hola%20Probo!%20Vi%20su%20sitio%20web%20y%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n."
+    <a href="https://wa.me/5493512429512?text=Hola%20Probo!%20Vi%20su%20sitio%20web%20y%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n."
         class="whatsapp-float" target="_blank" title="Chatea con nosotros">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -316,31 +324,13 @@
         </div>
     </nav>
 
-    <!-- MENÚ MÓVIL -->
-    <div id="mobile-menu"
-        class="fixed inset-0 bg-white z-[60] flex flex-col p-10 translate-x-full md:hidden transition-transform duration-500">
-        <div class="flex justify-between items-center mb-16">
-            <img src="logo.png" alt="Probo Logo" class="h-10 w-auto">
-            <button onclick="toggleMobileMenu(false)" class="text-probo-navy">
-                <i data-lucide="x"></i>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-8 text-2xl font-bold text-probo-navy uppercase font-title">
-            <a href="#" onclick="toggleMobileMenu(false)">Home</a>
-            <a href="#nosotros" onclick="toggleMobileMenu(false)">Nosotros</a>
-            <a href="#clientes" onclick="toggleMobileMenu(false)">Sectores</a>
-            <a href="#servicios" onclick="toggleMobileMenu(false)">Servicios</a>
-            <a href="#contacto" onclick="toggleMobileMenu(false)">Contacto</a>
-            <button onclick="toggleModal('construction-modal', true); toggleMobileMenu(false)"
-                class="text-left text-probo-teal">Acceso Clientes »</button>
-        </div>
-    </div>
+
 
     <!-- SECCIÓN HERO -->
     <header class="hero-viewport px-6 md:px-8 lg:px-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto w-full z-10 text-center md:text-left">
             <div class="reveal">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl mb-10 leading-[0.9] tracking-tighter font-bebas">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl mb-10 leading-[0.9] tracking-normal font-bebas">
                     Acompañamiento <br class="hidden md:block"> profesional especializado en <br
                         class="hidden md:block">
                     <span class="text-probo-mint">Organizaciones de la <br class="hidden md:block"> Sociedad
@@ -443,7 +433,7 @@
                         Nosotros
                     </h2>
                     <h3
-                        class="text-4xl md:text-6xl text-white mb-10 tracking-tighter leading-none font-bebas italic uppercase">
+                        class="text-4xl md:text-6xl text-white mb-10 tracking-normal leading-none font-bebas italic uppercase">
                         Un
                         equipo <br> interdisciplinario.</h3>
                     <p class="text-base md:text-xl text-probo-smoke/80 mb-10 leading-relaxed font-medium">
@@ -500,7 +490,7 @@
             <!-- RESPONSABLES DE ÁREA -->
             <div class="reveal pt-16 border-t border-slate-100">
                 <div class="mb-16 text-center">
-                    <h4 class="text-4xl md:text-6xl text-white mb-4 tracking-tighter uppercase italic font-bebas">
+                    <h4 class="text-4xl md:text-6xl text-white mb-4 tracking-normal uppercase italic font-bebas">
                         Responsables de Área</h4>
                     <p class="text-probo-mint font-bold text-base md:text-lg uppercase tracking-widest">Profesionales a
                         cargo de
@@ -513,7 +503,8 @@
                         <div
                             class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
                             <img src="german.png" alt="Cr. Germán Rossi"
-                                class="w-full h-full object-cover object-top block">
+                                class="w-full h-full object-cover object-top block"
+                                style="image-rendering: -webkit-optimize-contrast;">
                         </div>
                         <h5 class="text-2xl md:text-3xl text-white font-black mb-2 font-title leading-tight">» Cr.
                             Germán
@@ -529,7 +520,7 @@
                         <div
                             class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
                             <img src="alexandra.png" alt="Ab. Alexandra Szyrko"
-                                class="w-full h-full object-cover object-top block">
+                                class="w-full h-full object-cover object-top block brightness-90 blur-[0.5px]">
                         </div>
                         <h5 class="text-2xl md:text-3xl text-white font-black mb-2 font-title leading-tight">» Ab.
                             Alexandra Szyrko</h5>
@@ -544,7 +535,8 @@
                         <div
                             class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-probo-light mb-8 overflow-hidden border-8 border-white shadow-xl transition-transform group-hover:scale-105 flex items-center justify-center">
                             <img src="maxi.png" alt="Cr. Maximiliano Giai"
-                                class="w-full h-full object-cover object-top block">
+                                class="w-full h-full object-cover object-top block"
+                                style="image-rendering: -webkit-optimize-contrast;">
                         </div>
                         <h5 class="text-2xl md:text-3xl text-white font-black mb-2 font-title leading-tight">» Cr.
                             Maximiliano Giai</h5>
@@ -567,7 +559,7 @@
                 <h2 class="text-probo-mint tracking-[0.3em] uppercase text-xs md:text-sm mb-6 font-bold font-title">
                     Acompañamos
                 </h2>
-                <h3 class="text-4xl md:text-6xl text-white mb-8 tracking-tighter uppercase italic font-bebas">A
+                <h3 class="text-4xl md:text-6xl text-white mb-8 tracking-normal uppercase italic font-bebas">A
                     quiénes acompañamos</h3>
                 <p
                     class="text-probo-smoke/80 font-medium max-w-3xl mx-auto text-base md:text-xl font-title leading-relaxed">
@@ -652,7 +644,7 @@
                 <h2 class="text-probo-mint tracking-[0.3em] uppercase text-xs md:text-sm mb-6 font-bold font-title">
                     Nuestros
                     servicios</h2>
-                <h3 class="text-4xl md:text-6xl mb-8 tracking-tighter italic font-bebas text-white uppercase">
+                <h3 class="text-4xl md:text-6xl mb-8 tracking-normal italic font-bebas text-white uppercase">
                     Soluciones Especializadas.</h3>
                 <p
                     class="text-probo-smoke/80 font-medium max-w-4xl mx-auto leading-relaxed text-base md:text-xl font-title">
@@ -780,7 +772,7 @@
                 <div class="reveal">
                     <img src="logo.png" alt="Probo Logo" class="h-10 md:h-14 w-auto brightness-0 invert mb-12">
                     <h2
-                        class="text-5xl md:text-8xl mb-12 tracking-tighter leading-[0.85] italic uppercase font-bebas text-probo-mint">
+                        class="text-5xl md:text-8xl mb-12 tracking-normal leading-[0.85] italic uppercase font-bebas text-probo-mint">
                         Hablemos <br> de tu <br> proyecto.</h2>
 
                     <div class="space-y-10 md:space-y-12">
@@ -873,14 +865,14 @@
                 <form id="whatsapp-form" class="space-y-4 font-title">
                     <div class="grid md:grid-cols-2 gap-4">
                         <input type="text" id="w-name" placeholder="NOMBRE COMPLETO" required
-                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase">
+                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase text-probo-navy placeholder:text-probo-navy/40">
                         <input type="text" id="w-org" placeholder="ORGANIZACIÓN" required
-                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase">
+                            class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase text-probo-navy placeholder:text-probo-navy/40">
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-4">
                         <select id="w-org-type"
-                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer">
+                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer text-probo-navy">
                             <option value="">TIPO DE OSC</option>
                             <option value="Asociación Civil">Asociación Civil</option>
                             <option value="Fundación">Fundación</option>
@@ -889,7 +881,7 @@
                             <option value="En formación">En formación</option>
                         </select>
                         <select id="w-reason"
-                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer">
+                            class="w-full bg-slate-50 px-5 py-4 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase cursor-pointer text-probo-navy">
                             <option value="">MOTIVO</option>
                             <option value="Legal">Asesoría Legal</option>
                             <option value="Contable">Asesoría Contable</option>
@@ -904,13 +896,13 @@
                             <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-2">Día
                                 Sugerido</label>
                             <input type="date" id="w-date"
-                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold">
+                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold text-probo-navy">
                         </div>
                         <div class="flex flex-col gap-1">
                             <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-2">Franja
                                 Horaria</label>
                             <select id="w-time"
-                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase">
+                                class="bg-slate-50 px-5 py-3 rounded-xl outline-none border-2 border-transparent focus:border-probo-teal text-xs font-bold tracking-widest uppercase text-probo-navy">
                                 <option value="Mañana (09-12hs)">Mañana</option>
                                 <option value="Siesta (12-15hs)">Siesta</option>
                                 <option value="Tarde (15-18hs)">Tarde</option>
@@ -919,7 +911,7 @@
                     </div>
 
                     <textarea id="w-details" placeholder="DETALLE DE LA CONSULTA" rows="2"
-                        class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase resize-none"></textarea>
+                        class="w-full bg-slate-50 px-6 py-4 rounded-xl outline-none font-bold border-2 border-transparent focus:border-probo-teal text-xs tracking-widest uppercase resize-none text-probo-navy placeholder:text-probo-navy/40"></textarea>
 
                     <button type="submit"
                         class="w-full bg-probo-mint text-probo-navy py-6 rounded-2xl font-bebas uppercase tracking-[0.2em] text-lg hover:bg-white hover:text-probo-navy transition shadow-xl mt-4">
@@ -957,22 +949,25 @@
         </div>
     </div>
 
-    <!-- MENÚ MÓVIL -->
+    <!-- MENÚ MÓVIL (Versión Dark Integrada) -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-white z-[60] flex flex-col p-10 translate-x-full md:hidden transition-transform duration-500">
-        <div class="flex justify-between items-center mb-12">
-            <img src="logo.png" alt="Probo Logo" class="h-10 w-auto">
-            <button onclick="toggleMobileMenu(false)" class="text-probo-navy">
-                <i data-lucide="x"></i>
+        class="fixed inset-0 bg-probo-navy z-[60] flex flex-col p-10 translate-x-full md:hidden transition-transform duration-500">
+        <div class="flex justify-between items-center mb-16">
+            <img src="logo.png" alt="Probo Logo" class="h-10 w-auto brightness-0 invert">
+            <button onclick="toggleMobileMenu(false)" class="text-white hover:text-probo-mint transition">
+                <i data-lucide="x" size="32"></i>
             </button>
         </div>
-        <div class="flex flex-col space-y-10 text-3xl font-black text-probo-navy uppercase font-title leading-none">
-            <a href="#" onclick="toggleMobileMenu(false)">Home</a>
-            <a href="#nosotros" onclick="toggleMobileMenu(false)">Nosotros</a>
-            <a href="#servicios" onclick="toggleMobileMenu(false)">Servicios</a>
-            <a href="#contacto" onclick="toggleMobileMenu(false)">Contacto</a>
+        <div class="flex flex-col space-y-10 text-3xl font-black text-white uppercase font-bebas italic leading-none">
+            <a href="#" onclick="toggleMobileMenu(false)" class="hover:text-probo-mint transition">Home</a>
+            <a href="#nosotros" onclick="toggleMobileMenu(false)" class="hover:text-probo-mint transition">Nosotros</a>
+            <a href="#clientes" onclick="toggleMobileMenu(false)" class="hover:text-probo-mint transition">Sectores</a>
+            <a href="#servicios" onclick="toggleMobileMenu(false)"
+                class="hover:text-probo-mint transition">Servicios</a>
+            <a href="#contacto" onclick="toggleMobileMenu(false)" class="hover:text-probo-mint transition">Contacto</a>
             <button onclick="toggleModal('construction-modal', true); toggleMobileMenu(false)"
-                class="text-left text-probo-teal mt-8">Acceso Clientes »</button>
+                class="text-left text-probo-mint mt-6 flex items-center gap-2">Acceso Clientes <i data-lucide="lock"
+                    size="20"></i></button>
         </div>
     </div>
 
