@@ -160,7 +160,7 @@
             white-space: nowrap;
             display: flex;
             background: var(--probo-mint);
-            padding: 2.5rem 0;
+            padding: 1rem 0;
             border-bottom: 2px solid rgba(25, 116, 138, 0.1);
         }
 
@@ -172,7 +172,7 @@
         .marquee-word {
             font-family: 'Bebas Neue', sans-serif;
             letter-spacing: 0.1em;
-            font-size: 4rem;
+            font-size: 1.75rem;
             color: var(--probo-navy);
         }
 
@@ -329,7 +329,7 @@
 
     <!-- SECCIÓN HERO -->
     <header class="hero-viewport px-6 md:px-8 lg:px-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto w-full z-10 text-center md:text-left">
+        <div class="max-w-7xl mx-auto w-full z-10 text-center md:text-left pt-28 md:pt-32">
             <div class="reveal">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl mb-10 leading-[0.9] tracking-normal font-bebas">
                     Acompañamiento <br class="hidden md:block"> profesional especializado en <br
@@ -779,7 +779,7 @@
                     <div class="space-y-10 md:space-y-12">
                         <div class="flex flex-col space-y-3">
                             <span
-                                class="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-probo-mint font-bebas">Encontranos
+                                class="text-sm md:text-base font-black uppercase tracking-[0.4em] text-probo-mint font-bebas">Encontranos
                                 en</span>
                             <p class="text-xl md:text-2xl font-bold font-title text-probo-smoke">Hipólito Yrigoyen 335,
                                 <br> Villa Allende, Córdoba,
@@ -821,19 +821,19 @@
                 <div
                     class="reveal delay-200 bg-white p-10 md:p-14 rounded-[3rem] md:rounded-[4rem] shadow-2xl text-probo-navy">
                     <h4 class="text-2xl mb-10 italic uppercase tracking-tighter font-black">Envíanos tu consulta</h4>
-                    <form class="space-y-8 font-title">
+                    <form id="footer-contact-form" class="space-y-8 font-title">
                         <div class="grid md:grid-cols-2 gap-8">
-                            <input type="text" placeholder="NOMBRE"
+                            <input type="text" id="f-name" placeholder="NOMBRE" required
                                 class="w-full border-b border-probo-navy/10 py-4 outline-none focus:border-probo-mint transition bg-transparent font-bold text-xs tracking-widest uppercase text-probo-navy placeholder:text-probo-navy/40">
-                            <input type="email" placeholder="EMAIL"
+                            <input type="email" id="f-email" placeholder="EMAIL" required
                                 class="w-full border-b border-probo-navy/10 py-4 outline-none focus:border-probo-mint transition bg-transparent font-bold text-xs tracking-widest uppercase text-probo-navy placeholder:text-probo-navy/40">
                         </div>
-                        <input type="text" placeholder="ORGANIZACIÓN"
+                        <input type="text" id="f-org" placeholder="ORGANIZACIÓN" required
                             class="w-full border-b border-probo-navy/10 py-4 outline-none focus:border-probo-mint transition bg-transparent font-bold text-xs tracking-widest uppercase text-probo-navy placeholder:text-probo-navy/40">
-                        <textarea placeholder="MENSAJE" rows="3"
+                        <textarea id="f-message" placeholder="MENSAJE" rows="3" required
                             class="w-full border-b border-probo-navy/10 py-4 outline-none focus:border-probo-mint transition bg-transparent font-bold text-xs tracking-widest resize-none uppercase text-probo-navy placeholder:text-probo-navy/40"></textarea>
 
-                        <button type="button"
+                        <button type="submit"
                             class="bg-probo-mint text-probo-navy px-10 md:px-12 py-5 text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] hover:bg-probo-water transition duration-500 rounded-2xl w-full shadow-lg">
                             Enviar Consulta »
                         </button>
@@ -1021,6 +1021,24 @@
 
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
             toggleModal('booking-modal', false);
+        });
+
+        // FORMULARIO DE CONTACTO FOOTER - WHATSAPP
+        document.getElementById('footer-contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const phone = "5493512429512";
+            const name = document.getElementById('f-name').value.toUpperCase();
+            const email = document.getElementById('f-email').value;
+            const org = document.getElementById('f-org').value.toUpperCase();
+            const messageText = document.getElementById('f-message').value;
+
+            const finalMessage = `*NUEVA CONSULTA WEB (PROBO)*%0A%0A` +
+                `• *Nombre:* ${name}%0A` +
+                `• *Email:* ${email}%0A` +
+                `• *Organización:* ${org}%0A%0A` +
+                `*MENSAJE:*%0A${messageText}`;
+
+            window.open(`https://wa.me/${phone}?text=${finalMessage}`, '_blank');
         });
 
         window.addEventListener('scroll', () => {
